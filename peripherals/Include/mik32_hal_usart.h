@@ -2,6 +2,7 @@
 #include "mik32_hal_gpio.h"
 #include <stdbool.h>
 #include <string.h>
+#include <stdlib.h>
 #include "mcu32_memory_map.h"
 #include "uart.h"
 #include "gpio.h"
@@ -245,6 +246,7 @@ void HAL_USART_ClearFlags(UART_TypeDef* local);
 void HAL_USART_WriteByte(UART_TypeDef* local, char data);
 void HAL_USART_Transmit(UART_TypeDef* local, char data);
 void HAL_USART_Write(UART_TypeDef* local, char* buffer, uint32_t len);
+void HAL_USART_WriteInt(UART_TypeDef* local, uint32_t number);
 void HAL_USART_Print(UART_TypeDef* local, char* str);
 char HAL_USART_ReadByte(UART_TypeDef* local);
 char HAL_USART_Receive(UART_TypeDef* local);
@@ -264,7 +266,8 @@ void HAL_USART_DSR_ClearToggleFlag(UART_TypeDef* local);
 bool HAL_USART_DSR_ReadToggleFlag(UART_TypeDef* local);
 void HAL_USART_ClearModemFlags(UART_TypeDef* local);
 
-
+/* Waiting functions */
+void HAL_USART_WaitTransmittion(UART_TypeDef* local);
 // void HAL_USART_Printf(UART_TypeDef* local, char* str, ...);
 // void HAL_USART_PrintBefore(UART_TypeDef* local, char* str);
 // void HAL_USART_Print_c(UART_TypeDef* local, char value);

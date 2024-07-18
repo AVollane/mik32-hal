@@ -183,6 +183,23 @@ void HAL_USART_Write(UART_TypeDef* local, char* buffer, uint32_t len)
 }
 
 /*******************************************************************************
+ * @brief Функция передачи целого числа через интерфейс USART
+ * @param local указатель на структуру-дескриптор модуля USART
+ * @param number передаваемое число
+ * @return none
+ */
+void HAL_USART_WriteInt(UART_TypeDef* local, uint32_t number){
+    char buffer[16];
+    itoa(number, buffer, 16);
+    uint16_t len = strlen(buffer);
+    HAL_USART_Write(local, buffer, len);
+}
+
+void HAL_USART_WaitTransmittion(UART_TypeDef* local){
+    while (!HAL_USART_TXC_ReadFlag(local));
+}
+
+/*******************************************************************************
  * @brief Функция передачи строки через интерфейс USART. Строка обязательно
  * должна оканчиваться символом '\0'.
  * @param local указатель на структуру-дескриптор модуля USART
